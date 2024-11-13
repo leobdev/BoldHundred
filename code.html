@@ -35,10 +35,10 @@
                         <a class="nav-link " aria-current="page" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/app.html">The App</a>
+                        <a class="nav-link " href="/app.html">The App</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/code.html">The Code</a>
+                        <a class="nav-link active" href="/code.html">The Code</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://github.com/leobdev">Git Repo</a>
@@ -59,16 +59,86 @@
                 <div class="col-lg-8 ">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            function helloWorld() {
-                            alert("Hello Wolrd");
+                            //1. get the values from the page
+                            //starst or controller function
+                            function getValues(){
+                                //get values from the page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+                                
+                                //parse into integers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+                                
+                                if(Number.isInteger(startValue) && Number.isInteger(endValue)){
+                                
+                                    //call generateNumbers
+                                    let numbers = generateNumbers(startValue, endValue);
+                                    displayNumbers(numbers);
+                                
+                                }
+                                else{
+                                    alert("You must enter integers!")
+                                }
+                            
+                            }
+                            
+                            //2. generate numbers from the startValue to the endValue
+                            //logic function
+                            function generateNumbers(sValue, eValue){
+                            let numbers = [];
+                            //we want all numbers from start to end
+                            for (let i = sValue; i <= eValue; i++) { 
+                                numbers.push(i); 
+                            } return numbers; } 
+                            
+                            //3. display the numbers and mark even numbers bold 
+                            //display or view function 
+                            function displayNumbers(numbers){ 
+                                let templateRows="" ; 
+                                
+                                for (let index=0;index < numbers.length; index++) { 
+                                    let number=numbers[index]; let className="" ; 
+                                    
+                                    if(number % 2==0){ 
+                                        className="even"; 
+                                    } 
+                                    
+                                    templateRows +=`<tr><td class="${className}">${number}</td></tr>`;
+                                }
+                            
+                                document.getElementById("results").innerHTML = templateRows;
+                            
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello world.</h5>
-                    <p>Hello world is a function that displays an alert with a message of "Hello world".</p>
+                    <p>The Code is structured in three functions.</p>
+                    <h5>getValues.</h5>
+                    <p>getValues accepts (get) the user input from the page. It utilizes <strong>getElelemntById</strong>
+                     to pull the values from the page. It passes those values to the <strong>generateNumbers</strong> function.
+                     The function <strong>generateNumbers</strong> returns an array of values and passes that array to the 
+                     <strong>displayNumbers</strong> function.</p>
+                    <br>
+                    <h5>generateNumbers</h5>
+                    <p>generateNumbers takes in two parameters: startValue and endValue. We create a variable (numbers) that holds an array. A 
+                        for loop is used to generate all of the numbers between <strong>startValue</strong> and <strong>endValue</strong>.
+                    </p>
+                    <br>
+                    <h5>dispayNumbers</h5>
+                    <p>displayNumbers takes in one parameter numbers. The variable <strong>numbers</strong> is an array that holds values between
+                     <strong>startValue</strong> and <strong>endValue</strong>. We create a variable <strong>className</strong> that holds the name of 
+                    a CSS class that we will use to bold the numbers. We create a variable <strong>templateRows</strong> that will hold the html we will write
+                    to the page.</p>
+      
+                    <p>A for loop is used to check all of the numbers to see if they are even or odd. The remainder operator <strong>%</strong> is 
+                        used to see if the number is divisible by two. If it returns zero the number is even. Inside the If statement, 
+                        the even numbers that passes the check will let the <strong>className</strong> variable assign the <strong>even</strong> 
+                        value as a string. The correct className is injected into the html row for display. Each iteration of the loop adds to 
+                        the templateRows variable. At the end of the loop the resulting HTML rows are written to the page. 
+
+                    </p>
                 </div>
             </div>
         </div>

@@ -41,9 +41,15 @@ function generateNumbers(sValue, eValue){
 function displayNumbers(numbers){
     let templateRows = "";
     for (let index = 0; index < numbers.length; index++) {
-        
         let number = numbers[index];
-        templateRows += `<tr><td>${number}</td></tr>`;
+        
+        let className = "";
+
+        if(number % 2 == 0){
+            className = "even";
+        }
+       
+        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
     }
 
     document.getElementById("results").innerHTML = templateRows;

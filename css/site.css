@@ -72,4 +72,8 @@ footer .social > a:hover {
             white-space: pre-wrap;
             word-break: break-all;
             word-wrap: break-word;
-        }
+   }
+
+   .even {
+      font-weight: bold;
+   }
