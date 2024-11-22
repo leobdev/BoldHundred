@@ -22,7 +22,7 @@ function getValues(){
     }
 
 }
-
+    
 //2. generate numbers from the startValue to the endValue
 //logic function
 function generateNumbers(sValue, eValue){
